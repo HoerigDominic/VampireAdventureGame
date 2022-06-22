@@ -1,6 +1,7 @@
 package model;
 public class Vampire {
  
-    String id;
+    private String id;
+
 
 }
