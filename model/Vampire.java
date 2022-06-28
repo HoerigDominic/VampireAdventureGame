@@ -29,6 +29,20 @@ public class Vampire {
         this.finallyDead = false;
     }
 
+    public Vampire(String name) {
+
+        this.name = name;
+        this.id = UUID.randomUUID().toString();
+        this.grandness = 0;
+        this.hunger = 5;
+        this.isDrinkingBlood = false;
+        this.inFight = false;
+        this.canControllInstincts = false;
+        this.energy = 10;
+        this.finallyDead = false;
+    }
+
+
     public String getId() {
         return id;
     }
