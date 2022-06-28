@@ -19,7 +19,7 @@ public class VampireAdventureApp {
             showMenu();
             int choice = readUserInput();
             handle(choice);
-            System.out.println("====================");
+            System.out.println("============");
         //}
     }
 
@@ -73,7 +73,7 @@ public class VampireAdventureApp {
      */
     private static void showMenu() {
 
-        String menuItems[] = { "", "(1)\t Create Vampire", "(2)\t Show Selected Vampire" };
+        String menuItems[] = { "", "(1)\t Create Vampire", "(2)\t Show Selected Vampire", "(3)\t List all Vampire", "(4)\t Delete Vampire", "(5)\t Start Nightly Adventure", "(6)\t Quit"};
 
         System.out.println("\nVampire Adventures 1.0\n");
         for (int i = 1; i < menuItems.length; i++) {
