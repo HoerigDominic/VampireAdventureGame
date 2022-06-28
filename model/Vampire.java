@@ -15,34 +15,19 @@ public class Vampire {
     private int energy=10;
     private boolean finallyDead;
     
-
     public Vampire(String name, CreatorVampire creator){
 
         this.name = name;
         this.creator = creator;
-
+        this.id = UUID.randomUUID().toString();
+        this.grandness = 0;
+        this.hunger = 5;
+        this.isDrinkingBlood = false;
+        this.inFight = false;
+        this.canControllInstincts = false;
+        this.energy = 10;
+        this.finallyDead = false;
     }
-    
-    
-    public Vampire(String id, String name, int grandness, int hunger, CreatorVampire creator, boolean isDrinkingBlood,
-            boolean inFight, boolean canControllInstincts, int energy, boolean finallyDead) {
-        this.id = id;
-        this.name = name;
-        this.grandness = grandness;
-        this.hunger = hunger;
-        this.creator = creator;
-        this.isDrinkingBlood = isDrinkingBlood;
-        this.inFight = inFight;
-        this.canControllInstincts = canControllInstincts;
-        this.energy = energy;
-        this.finallyDead = finallyDead;
-    }
-
-
-
-    
-
-
 
     public String getId() {
         return id;
