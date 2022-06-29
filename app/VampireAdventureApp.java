@@ -15,12 +15,12 @@ public class VampireAdventureApp {
      */
     public static void main(String[] args) {
 
-        //while (true) {
+        while (true) {
             showMenu();
             int choice = readUserInput();
             handle(choice);
             System.out.println("============");
-        //}
+        }           // Schleife aktiviert @Team
     }
 
     /**
@@ -35,6 +35,7 @@ public class VampireAdventureApp {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
+            scanner.nextLine(); //@author Team
         }
 
         return choiceInternal;
@@ -58,6 +59,7 @@ public class VampireAdventureApp {
             case 5:
                 break;
             case 6:
+                quitGame(); // Funktion Team
                 break;
             default: {
                 System.out.println("Invalid input. Please choose a correct number between 1 and 6");
@@ -73,8 +75,8 @@ public class VampireAdventureApp {
      */
     private static void showMenu() {
 
-        String menuItems[] = { "", "(1)\t Create Vampire", "(2)\t Show Selected Vampire", "(3)\t List all Vampire", "(4)\t Delete Vampire", "(5)\t Start Nightly Adventure", "(6)\t Quit"};
-
+        String[] menuItems = { "", "(1)\t Create Vampire", "(2)\t Show Selected Vampire", "(3)\t List all Vampire", "(4)\t Delete Vampire", "(5)\t Start Nightly Adventure", "(6)\t Quit"};
+        //Menupunkte Team
         System.out.println("\nVampire Adventures 1.0\n");
         for (int i = 1; i < menuItems.length; i++) {
             System.out.println(menuItems[i]);
@@ -87,4 +89,11 @@ public class VampireAdventureApp {
                 "\nLeider hat die Methode noch keinen Code. Aber Du kannst hoffentlich nachvollziehen wie der Ablauf ist. Hier sollst Du einen Vampir anlegen.\n");
     }
 
+    // Team
+    private static void quitGame() {
+        System.out.println("\nThe Game has been closed!\n");
+        System.exit(0);
+
+    }
+    
 }
