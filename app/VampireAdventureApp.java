@@ -1,7 +1,7 @@
 package app;
 
 import java.util.Scanner;
-
+        
 import model.CreatorVampire;
 import model.Vampire;
 
@@ -18,12 +18,12 @@ public class VampireAdventureApp {
      */
     public static void main(String[] args) {
 
-        //while (true) {
+        while (true) {
             showMenu();
             int choice = readUserInput();
             handle(choice);
             System.out.println("============");
-        //}           // Schleife aktiviert @Team
+        }           // Schleife aktiviert @Team
     }
 
     /**
@@ -87,13 +87,17 @@ public class VampireAdventureApp {
 
     }
 
-    private static void createVampire() {
-        
-        
-        CreatorVampire creatorRandom = new CreatorVampire("");
 
+    //
+    private static void createVampire() {
+
+        CreatorVampire creatorRandom = new CreatorVampire("");
         System.out.println("Please enter a Name for your Creator Vampire!");
-        scanner.nextLine();
+        creatorRandom.setName(System.in);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String input = in.readLine();
+        
         Vampire vampireRandom1 = new Vampire("Vampire1",creatorRandom);
         Vampire vampireRandom2 = new Vampire("Vampire2",creatorRandom);
 
@@ -107,5 +111,7 @@ public class VampireAdventureApp {
         System.exit(0);
 
     }
+
+
     
 }
