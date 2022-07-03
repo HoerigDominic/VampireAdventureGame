@@ -2,6 +2,9 @@ package app;
 
 import java.util.Scanner;
 
+import model.CreatorVampire;
+import model.Vampire;
+
 /**
  * @author vemaj
  *
@@ -15,12 +18,12 @@ public class VampireAdventureApp {
      */
     public static void main(String[] args) {
 
-        while (true) {
+        //while (true) {
             showMenu();
             int choice = readUserInput();
             handle(choice);
             System.out.println("============");
-        }           // Schleife aktiviert @Team
+        //}           // Schleife aktiviert @Team
     }
 
     /**
@@ -85,8 +88,17 @@ public class VampireAdventureApp {
     }
 
     private static void createVampire() {
-        System.out.println(
-                "\nLeider hat die Methode noch keinen Code. Aber Du kannst hoffentlich nachvollziehen wie der Ablauf ist. Hier sollst Du einen Vampir anlegen.\n");
+        
+        
+        CreatorVampire creatorRandom = new CreatorVampire("");
+
+        System.out.println("Please enter a Name for your Creator Vampire!");
+        scanner.nextLine();
+        Vampire vampireRandom1 = new Vampire("Vampire1",creatorRandom);
+        Vampire vampireRandom2 = new Vampire("Vampire2",creatorRandom);
+
+
+        
     }
 
     // Team
