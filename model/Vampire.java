@@ -1,6 +1,7 @@
 package model;
 
 import java.util.UUID;
+import java.util.Random;
 
 public class Vampire {
  
@@ -15,6 +16,7 @@ public class Vampire {
     private int energy=10;
     private boolean finallyDead;
     
+    //Konsturkor für normale jung Vampire
     public Vampire(String name, CreatorVampire creator){
 
         this.name = name;
@@ -29,6 +31,7 @@ public class Vampire {
         this.finallyDead = false;
     }
 
+    //Konsturkor für Creator Vampire
     public Vampire(String name) {
 
         this.name = name;
@@ -37,10 +40,25 @@ public class Vampire {
         this.hunger = 5;
         this.isDrinkingBlood = false;
         this.inFight = false;
+        this.canControllInstincts = true;
+        this.energy = 10;
+        this.finallyDead = false;
+    }
+
+    //Konsturkor für verwandelte Menschen in Vampire
+    public Vampire() {
+
+        this.id = UUID.randomUUID().toString();
+        this.creator = null;
+        this.grandness = 0;
+        this.hunger = 5;
+        this.isDrinkingBlood = false;
+        this.inFight = false;
         this.canControllInstincts = false;
         this.energy = 10;
         this.finallyDead = false;
     }
+
 
 
     public String getId() {
@@ -161,8 +179,56 @@ public class Vampire {
         this.finallyDead = finallyDead;
     }
 
+    //Operationen
 
-    
-    
+    //attackHuman
+    public boolean attackHuman(Human human) {
+
+        int overwhelmHumanValue = new Random().nextInt(10);
+        boolean overwhelmHuman = false; 
+
+        if (overwhelmHumanValue <= 6) {
+
+            System.out.println(this.name + " overwhelmed the Human! ");
+            overwhelmHuman = true;
+            return overwhelmHuman;
+
+        } else {
+
+            System.out.println(this.name + " failed to overhelm the Human! ");
+            return overwhelmHuman;
+        }
+    }
+
+    //drinkBlood 
+    public double drinkBlood(double amount) {
+
+        // amount für Ernergieaufladung ? 
+        this.isDrinkingBlood = true;
+        this.hunger += 1;
+
+    }
+
+    //takeDamage
+    public int takeDamage(int damage) {
+
+        this.energy = this.energy - damage;
+
+        if (this.energy <= 0) {
+
+            System.out.println(this.name +" is dead !");
+            this.finallyDead = true;
+        } 
+            
+        return this.energy;
+
+    }
+
 
 }
+
+
+
+    
+    
+
