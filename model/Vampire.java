@@ -4,19 +4,20 @@ import java.util.UUID;
 import java.util.Random;
 
 public class Vampire {
- 
+
+    //Attribute
     private String id=UUID.randomUUID().toString();
     private String name;
-    private int grandness=0;
-    private int hunger=5;
+    private int grandness;
+    private double hunger;
     private CreatorVampire creator;
     private boolean isDrinkingBlood;
     private boolean inFight;
     private boolean canControllInstincts;
-    private int energy=10;
+    private int energy;
     private boolean finallyDead;
     
-    //Konsturkor für normale jung Vampire
+    //Konstruktor für normale jung Vampire
     public Vampire(String name, CreatorVampire creator){
 
         this.name = name;
@@ -31,7 +32,7 @@ public class Vampire {
         this.finallyDead = false;
     }
 
-    //Konsturkor für Creator Vampire
+    //Konstruktor für Creator Vampire
     public Vampire(String name) {
 
         this.name = name;
@@ -45,7 +46,7 @@ public class Vampire {
         this.finallyDead = false;
     }
 
-    //Konsturkor für verwandelte Menschen in Vampire
+    //Konstruktor für  verwandelte Menschen in Vampire
     public Vampire() {
 
         this.id = UUID.randomUUID().toString();
@@ -59,154 +60,122 @@ public class Vampire {
         this.finallyDead = false;
     }
 
-
-
+    //Getter & Setter
     public String getId() {
         return id;
     }
-
-
 
     public void setId(String id) {
         this.id = id;
     }
 
-
-
     public String getName() {
         return name;
     }
-
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-
-
     public int getGrandness() {
         return grandness;
     }
-
-
 
     public void setGrandness(int grandness) {
         this.grandness = grandness;
     }
 
-
-
-    public int getHunger() {
+    public double getHunger() {
         return hunger;
     }
 
-
-
-    public void setHunger(int hunger) {
+    public void setHunger(double hunger) {
         this.hunger = hunger;
     }
-
-
 
     public CreatorVampire getCreator() {
         return creator;
     }
 
-
-
     public void setCreator(CreatorVampire creator) {
         this.creator = creator;
     }
-
-
 
     public boolean isDrinkingBlood() {
         return isDrinkingBlood;
     }
 
-
-
     public void setDrinkingBlood(boolean isDrinkingBlood) {
         this.isDrinkingBlood = isDrinkingBlood;
     }
-
-
 
     public boolean isInFight() {
         return inFight;
     }
 
-
-
     public void setInFight(boolean inFight) {
         this.inFight = inFight;
     }
-
-
 
     public boolean isCanControllInstincts() {
         return canControllInstincts;
     }
 
-
-
     public void setCanControllInstincts(boolean canControllInstincts) {
         this.canControllInstincts = canControllInstincts;
     }
-
-
 
     public int getEnergy() {
         return energy;
     }
 
-
-
     public void setEnergy(int energy) {
         this.energy = energy;
     }
 
-
-
     public boolean isFinallyDead() {
         return finallyDead;
     }
-
-
 
     public void setFinallyDead(boolean finallyDead) {
         this.finallyDead = finallyDead;
     }
 
     //Operationen
-
     //attackHuman
     public boolean attackHuman(Human human) {
 
-        int overwhelmHumanValue = new Random().nextInt(10);
-        boolean overwhelmHuman = false; 
+        int overwhelmHumanValue = new Random().nextInt(10); 
+        boolean overwhelmHuman = false;
 
-        if (overwhelmHumanValue <= 6) {
-
-            System.out.println(this.name + " overwhelmed the Human! ");
+        if (overwhelmHumanValue <= 6 && human.defendVampire() == overwhelmHuman) {
+            System.out.println("The Vampire" + this.name + " overwhelmed the Human! Now he could drink blood!");
             overwhelmHuman = true;
-            return overwhelmHuman;
 
         } else {
+            System.out.println("The Vampire" + this.name + " failed to overhelm the Human! ");
 
-            System.out.println(this.name + " failed to overhelm the Human! ");
-            return overwhelmHuman;
         }
+        return overwhelmHuman;
+
     }
 
     //drinkBlood 
     public double drinkBlood(double amount) {
 
-        // amount für Ernergieaufladung ? 
         this.isDrinkingBlood = true;
-        this.hunger += 1;
+        this.hunger = this.hunger - amount;
 
+        if (this.hunger <= 0) {
+            System.out.println("The Vampire " + this.name + " satisfied his hunger!");     
+        
+        } else {
+            System.out.println("The Vampire " + this.name + " needs more blood to satisfy his hunger!"); 
+
+        } 
+
+        return this.hunger;
+        
     }
 
     //takeDamage
