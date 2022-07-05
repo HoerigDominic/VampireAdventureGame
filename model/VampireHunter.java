@@ -1,6 +1,7 @@
 package model;
 
 import java.util.UUID;
+import java.util.Random;
 
 public class VampireHunter {
 
@@ -8,6 +9,7 @@ public class VampireHunter {
     private String name;
     private int experiencePoints = 0;
     private int energy = 1000;
+    private boolean alive;
 
     public VampireHunter (String name) {
 
@@ -15,6 +17,7 @@ public class VampireHunter {
         this.id = UUID.randomUUID().toString();
         this.experiencePoints = 0;
         this.energy = 1000;
+        this.alive = true;
 
     }
 
@@ -50,10 +53,47 @@ public class VampireHunter {
         this.energy = energy;
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
     
 
+    //Operationen
+    //attack
+    public int attack(Vampire vampire) {
 
+        int probability = new Random().nextInt(10);
+        
+        if (probability <= 5) {
 
+            return vampire.getEnergy() - 3;
+        } 
 
+        return vampire.getEnergy();
+    
+    }
+
+    //takeDamage
+    public int takeDamage(int amount) {
+
+        this.energy = this.energy - amount;
+
+        return this.energy;
+    }
+
+    //alive
+    public boolean alive() {
+
+        if (this.energy <= 0) {
+
+            this.alive = false;
+            return this.alive;
+        }
+        return this.alive;
+    }
     
 }
