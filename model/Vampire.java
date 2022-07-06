@@ -148,7 +148,7 @@ public class Vampire {
         int overwhelmHumanValue = new Random().nextInt(10); 
         boolean overwhelmHuman = false;
 
-        if (overwhelmHumanValue <= 6 && human.defendVampire() == overwhelmHuman) {
+        if (overwhelmHumanValue <= 6 && human.defend() == overwhelmHuman) {
             System.out.println("The Vampire" + this.name + " overwhelmed the Human! Now he could drink blood!");
             overwhelmHuman = true;
 
@@ -192,7 +192,13 @@ public class Vampire {
         return this.energy;
 
     }
+    
+    //print Methode aller Attribute eines Vampires
+    public void print() {
 
+        System.out.println("Name"+this.name+"\tGrandness:"+this.grandness+"\tBloodhunger (liter):"+this.hunger+"\nEnergy:"+this.energy+"\tCreator:"+this.creator);
+
+    }
 
 }
 
