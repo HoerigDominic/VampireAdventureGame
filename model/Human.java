@@ -2,13 +2,14 @@ package model;
 
 import java.util.UUID;
 import java.util.Random;
--
 
 public class Human {
     
+    //Attribute
     private String id = UUID.randomUUID().toString();
     private double amountOfBlood = generateRandom();
 
+    //Konstruktor
     public Human (double amountOfBlood) {
 
         this.amountOfBlood = amountOfBlood;
@@ -16,6 +17,7 @@ public class Human {
 
     }
 
+    //Getter & Setter
     public String getId() {
         return id;
     }
@@ -24,35 +26,68 @@ public class Human {
         this.id = id;
     }
 
+    public double getAmountOfBlood() {
+        return amountOfBlood;
+    }
+
+    public void setAmountOfBlood(double amountOfBlood) {
+        this.amountOfBlood = amountOfBlood;
+    }
+
+    //Operationen
     //defend
+    public boolean defend() {
+
+        int probability = new Random().nextInt(4);
+        boolean defend = false;
+
+        if (probability <= 1) {
+            
+            defend = true;
+            System.out.println("The human defended himself from your attack!");
+
+        } else {
+            System.out.println("The human missed to defend himself from your attack!");
+        } 
+        return defend;
+    }
 
     //flee
+    public boolean flee() {
+
+        int probability = new Random().nextInt(10);
+        boolean fleeValue = false;
+
+        if (probability <= 2) {
+            System.out.println("The human fled!");
+            fleeValue = true;
+
+        } else {
+            System.out.println("The human missed to flee!");
+        } 
+        return fleeValue;
+    } 
 
     //turnIntoVampire
     public void turnIntoVampire(Vampire vampire) {
 
         if (this.amountOfBlood < 5) {
-            Vampire humanToVampire = new Vampire();
-            vampire.getName();
-            humanToVampire.setCreator();
-
-            //Creator setzen für den neuen Vampir ?
-
+            new Vampire();
             
         }
     }
 
-    // Definiert Blutmenge zwischen 6-8Liter als Double 
-    public int generateRandom() {
+    //Definiert Blutmenge zwischen 6-8Liter als Double 
+    public double generateRandom() {
 
     Random randomNumber = new Random();
-    int randomNumberValue = randomNumber.nextInt(8);
+    double randomNumberValue = randomNumber.nextDouble()*8;
 
     while (randomNumberValue < 6 ) {
-        randomNumberValue = randomNumber.nextInt(8);
-    } 
-    return randomNumberValue;
+        randomNumberValue = randomNumber.nextDouble()*8;
     }
 
+        return randomNumberValue;
+    }
 
 }
