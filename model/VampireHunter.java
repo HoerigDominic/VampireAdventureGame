@@ -5,12 +5,14 @@ import java.util.Random;
 
 public class VampireHunter {
 
+    //Attribute
     private String id = UUID.randomUUID().toString();
     private String name;
     private int experiencePoints = 0;
     private int energy = 1000;
     private boolean alive;
 
+    //Konstruktor
     public VampireHunter (String name) {
 
         this.name = name;
@@ -21,6 +23,7 @@ public class VampireHunter {
 
     }
 
+    // Getter & Setter
     public String getId() {
         return id;
     }
@@ -69,8 +72,15 @@ public class VampireHunter {
         int probability = new Random().nextInt(10);
         
         if (probability <= 5) {
+            
+            int newEnergyVampire = vampire.getEnergy() -3;
 
-            return vampire.getEnergy() - 3;
+            if (newEnergyVampire <= 0) {
+
+                vampire.setFinallyDead(true);
+                this.experiencePoints++;
+                
+            } return newEnergyVampire;
         } 
 
         return vampire.getEnergy();
@@ -82,6 +92,13 @@ public class VampireHunter {
 
         this.energy = this.energy - amount;
 
+        if (this.energy <= 0) {
+
+            this.alive = false;
+            System.out.println(this.name +" is dead !");
+
+        }
+
         return this.energy;
     }
 
@@ -91,8 +108,9 @@ public class VampireHunter {
         if (this.energy <= 0) {
 
             this.alive = false;
-            return this.alive;
+        
         }
+        
         return this.alive;
     }
     
