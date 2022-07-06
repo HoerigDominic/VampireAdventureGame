@@ -42,8 +42,9 @@ public class CreatorVampire extends Vampire {
     }
 
     //commandToAttack
-    public void commandToAttack(Vampire vampire) {
+    public void commandToAttack(Vampire vampire, Human human) {
 
+        
     }
 
     //sacrifice

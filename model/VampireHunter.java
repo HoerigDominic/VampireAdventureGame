@@ -69,7 +69,7 @@ public class VampireHunter {
     //attack
     public int attack(Vampire vampire) {
 
-        int probability = new Random().nextInt(10);
+        int probability = new Random().nextInt(11);
         
         if (probability <= 5) {
             

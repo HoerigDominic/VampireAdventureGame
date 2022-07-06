@@ -38,7 +38,7 @@ public class Human {
     //defend
     public boolean defend() {
 
-        int probability = new Random().nextInt(4);
+        int probability = new Random().nextInt(5);
         boolean defend = false;
 
         if (probability <= 1) {
@@ -55,7 +55,7 @@ public class Human {
     //flee
     public boolean flee() {
 
-        int probability = new Random().nextInt(10);
+        int probability = new Random().nextInt(11);
         boolean fleeValue = false;
 
         if (probability <= 2) {
@@ -81,10 +81,10 @@ public class Human {
     public double generateRandom() {
 
     Random randomNumber = new Random();
-    double randomNumberValue = randomNumber.nextDouble()*8;
+    double randomNumberValue = randomNumber.nextDouble()*9;
 
     while (randomNumberValue < 6 ) {
-        randomNumberValue = randomNumber.nextDouble()*8;
+        randomNumberValue = randomNumber.nextDouble()*9;
     }
 
         return randomNumberValue;

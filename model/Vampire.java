@@ -145,7 +145,7 @@ public class Vampire {
     //attackHuman
     public boolean attackHuman(Human human) {
 
-        int overwhelmHumanValue = new Random().nextInt(10); 
+        int overwhelmHumanValue = new Random().nextInt(11); 
         boolean overwhelmHuman = false;
 
         if (overwhelmHumanValue <= 6 && human.defend() == overwhelmHuman) {
