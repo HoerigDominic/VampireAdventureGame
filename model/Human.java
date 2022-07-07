@@ -6,15 +6,15 @@ import java.util.Random;
 public class Human {
     
     //Attribute
-    private String id = UUID.randomUUID().toString();
+    private String id;
     private double amountOfBlood = generateRandom();
 
     //Konstruktor
     public Human (double amountOfBlood) {
 
-        this.amountOfBlood = amountOfBlood;
         this.id = UUID.randomUUID().toString();
-
+        this.amountOfBlood = amountOfBlood;
+        
     }
 
     //Getter & Setter
