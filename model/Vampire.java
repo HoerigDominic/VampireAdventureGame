@@ -6,7 +6,7 @@ import java.util.Random;
 public class Vampire {
 
     //Attribute
-    private String id=UUID.randomUUID().toString();
+    private String id;
     private String name;
     private int grandness;
     private double hunger;
@@ -24,7 +24,7 @@ public class Vampire {
         this.creator = creator;
         this.id = UUID.randomUUID().toString();
         this.grandness = 0;
-        this.hunger = 5;
+        this.hunger = 5.00;
         this.isDrinkingBlood = false;
         this.inFight = false;
         this.canControllInstincts = false;
@@ -46,19 +46,6 @@ public class Vampire {
         this.finallyDead = false;
     }
 
-    //Konstruktor für  verwandelte Menschen in Vampire
-    public Vampire() {
-
-        this.id = UUID.randomUUID().toString();
-        this.creator = null;
-        this.grandness = 0;
-        this.hunger = 5;
-        this.isDrinkingBlood = false;
-        this.inFight = false;
-        this.canControllInstincts = false;
-        this.energy = 10;
-        this.finallyDead = false;
-    }
 
     //Getter & Setter
     public String getId() {
@@ -160,7 +147,7 @@ public class Vampire {
 
     }
 
-    //drinkBlood 
+    //drinkBlood when attack succes
     public double drinkBlood(double amount) {
 
         this.isDrinkingBlood = true;
@@ -178,7 +165,7 @@ public class Vampire {
         
     }
 
-    //takeDamage
+    //takeDamage from Vampirehunter
     public int takeDamage(int damage) {
 
         this.energy = this.energy - damage;
@@ -196,9 +183,18 @@ public class Vampire {
     //print Methode aller Attribute eines Vampires
     public void print() {
 
-        System.out.println("Name"+this.name+"\tGrandness:"+this.grandness+"\tBloodhunger (liter):"+this.hunger+"\nEnergy:"+this.energy+"\tCreator:"+this.creator);
+        System.out.println("\nName: "+this.name+
+                        "\nGrandness: "+this.grandness+
+                        "\nBloodhunger: "+this.hunger+
+                        "\nEnergy: "+this.energy);
 
     }
+
+    //addVampire
+    public void addVampire(Vampire vampire) {
+
+    }
+    //delete Vampire
 
 }
 
