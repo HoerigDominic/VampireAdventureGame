@@ -4,11 +4,13 @@ public class CreatorVampire extends Vampire {
 
     //zusaätzliches Attribut 
     private int descendants;
+    private int atk;
 
     //Konstruktor
     public CreatorVampire(String name) {
         super (name);
         this.descendants = 0; 
+        this.atk = 300;
     }
 
 
@@ -21,6 +23,15 @@ public class CreatorVampire extends Vampire {
         this.descendants = descendants;
     }
 
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+    
     
     //Operation
     //listAllDescendants
@@ -28,6 +39,12 @@ public class CreatorVampire extends Vampire {
 
         System.out.println("" + this.getDescendants());
     
+    }
+
+    //commandToAttack
+    public void commandToAttack(Vampire vampire, Human human) {
+
+        
     }
 
     //commandToDrinkBlood
@@ -39,13 +56,9 @@ public class CreatorVampire extends Vampire {
 
         System.out.println(vampire.getName() + " drunk " + amount + "L of the human blood!");
     }
+    // attackVampireHunter
 
-    //commandToAttack
-    public void commandToAttack(Vampire vampire, Human human) {
-
-        
-    }
-
+    
     //sacrifice
     public void sacrifice(Vampire vampire) {
 
@@ -58,5 +71,7 @@ public class CreatorVampire extends Vampire {
     public void flee() {
 
     }
+
+
 }
 
