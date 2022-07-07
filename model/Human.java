@@ -7,13 +7,16 @@ public class Human {
     
     //Attribute
     private String id;
-    private double amountOfBlood = generateRandom();
+    private int amountOfBlood;
+    private String name;
+    private boolean isOverwhelmd;
+
 
     //Konstruktor
-    public Human (double amountOfBlood) {
+    public Human () {
 
         this.id = UUID.randomUUID().toString();
-        this.amountOfBlood = amountOfBlood;
+        this.amountOfBlood = generateBlood();
         
     }
 
@@ -30,8 +33,24 @@ public class Human {
         return amountOfBlood;
     }
 
-    public void setAmountOfBlood(double amountOfBlood) {
+    public void setAmountOfBlood(int amountOfBlood) {
         this.amountOfBlood = amountOfBlood;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isOverwhelmd() {
+        return isOverwhelmd;
+    }
+
+    public void setOverwhelmd(boolean isOverwhelmd) {
+        this.isOverwhelmd = isOverwhelmd;
     }
 
     //Operationen
@@ -68,26 +87,47 @@ public class Human {
         return fleeValue;
     } 
 
+    //looseBlood
+    public void bloodloss (int amount, Vampire vampire) {
+
+        this.amountOfBlood = amountOfBlood - amount;
+
+        if (this.amountOfBlood < 5) {
+
+            turnIntoVampire(vampire);
+            System.out.println("A new Vampire has been born!");
+
+        } else {
+
+            System.out.println("You have drinken enough and let the human go his way....");
+        } 
+        
+    }
+
     //turnIntoVampire
     public void turnIntoVampire(Vampire vampire) {
 
-        if (this.amountOfBlood < 5) {
-            new Vampire();
+        
+
+        
+    
             
         }
     }
 
     //Definiert Blutmenge zwischen 6-8Liter als Double 
-    public double generateRandom() {
+    public int generateBlood() {
 
     Random randomNumber = new Random();
-    double randomNumberValue = randomNumber.nextDouble()*9;
+    int randomNumberValue = randomNumber.nextInt(9);
 
     while (randomNumberValue < 6 ) {
-        randomNumberValue = randomNumber.nextDouble()*9;
+        randomNumberValue = randomNumber.nextInt(9);
     }
 
         return randomNumberValue;
     }
+
+
 
 }
