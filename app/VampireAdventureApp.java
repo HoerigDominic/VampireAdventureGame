@@ -4,8 +4,6 @@ import java.util.Scanner;
         
 import model.CreatorVampire;
 import model.Vampire;
-import model.Human;
-import model.VampireHunter;
 
 /**
  * @author vemaj
@@ -14,18 +12,27 @@ import model.VampireHunter;
 public class VampireAdventureApp {
 
     private static Scanner scanner = new Scanner(System.in);
+    private static Vampire[] team = new Vampire [10];
 
     /**
      * @param args mainklasse
      */
     public static void main(String[] args) {
+        
+        CreatorVampire standardCreator = new CreatorVampire("Graf Dolmeva");
+        Vampire standardVampire1 = new Vampire("Serafim", standardCreator);
+        Vampire standardVampire2 = new Vampire("Gondalf", standardCreator);
+        
+        team[0] = standardCreator; 
+        team[1] = standardVampire1;
+        team[2] = standardVampire2;
 
         while (true) {
             showMenu();
             int choice = readUserInput();
             handle(choice);
             System.out.println("============");
-        }           // Schleife aktiviert @Team
+        }           
         
     }      
 
@@ -41,7 +48,7 @@ public class VampireAdventureApp {
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            scanner.nextLine(); //@author Team
+            scanner.nextLine(); 
         }
 
         return choiceInternal;
@@ -63,7 +70,7 @@ public class VampireAdventureApp {
                 listAllVampires();
                 break;
             case 4:
-                deletVampire();
+                deleteVampire();
                 break;
             case 5:
                 startNighltyAdventure();
@@ -99,37 +106,56 @@ public class VampireAdventureApp {
 
         System.out.print("\nPlease enter a Name for your Creator Vampire: ");
         CreatorVampire player = new CreatorVampire(scanner.next());
+        team[0] = player;
 
-        System.out.print("\nPlease enter a Name for first Descandent: ");
+        System.out.print("\nPlease enter a Name for your first Descandent: ");
         Vampire vampire1 = new Vampire(scanner.next(), player);
+        team[1] =vampire1;
 
-        System.out.print("\nPlease enter a Name for second Descandent: ");
+        System.out.print("\nPlease enter a Name for your second Descandent: ");
         Vampire vampire2 = new Vampire(scanner.next(), player);
-        
-        Vampire[] team = new Vampire [3];
-        team[0] = player; 
-        team[1] = vampire1;
-        team[2] = vampire2;
+        team[2]= vampire2;
+
         System.out.println("\nWell done "+player.getName()+"! \nTogether with your two descendents you can start a Nightly Adventure!\n");
-        
+
     } 
 
     //showSelectedVampire
     private static void showSelectedVampire() {
+        
+        System.out.print("\n=====Your Vampire Team====\n");
+        System.out.println("(1)\t"+ team[0].getName()+"\n(2)\t"+ team[1].getName()+"\n(3)\t"+ team[2].getName());
+        System.out.print("\nPlease choose a number between 1 and 3:\t");
+        int choice = scanner.nextInt();
 
-        System.out.print("\nPlease select a Vampire to show the stats: ");
-    
-        scanner.next();
+        if (choice == 1) {
+            team[0].print();
+        }  
+        else if (choice == 2) {
+            team[1].print();
+        } 
+        else if (choice == 3) {
+            team[2].print();
+        } 
+        else {
+            System.out.println("\nInvalid Input, Please choose a correct number between 1 and 3:\t");
+        }    
 
-    }
-    
+    }  
+
     //listAllVampires
     public static void listAllVampires() {
 
+        for (int i =0; i < team.length; i++) {
+
+            if(team[i] != null) {
+                team[i].print();
+            }
+        }
     }
 
     //deleteVampire
-    public static void deletVampire() {
+    public static void deleteVampire() {
 
     }
 
@@ -141,6 +167,7 @@ public class VampireAdventureApp {
     //quit
     private static void quitGame() {
         System.out.println("\nThe Game has been closed!\n");
+        System.out.println("\n=========================\n");
         System.exit(0);
 
     }
