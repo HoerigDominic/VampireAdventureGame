@@ -3,7 +3,7 @@ package model;
 public class CreatorVampire extends Vampire {
 
     //zusaätzliches Attribut 
-    private int descendants = 0;
+    private int descendants;
 
     //Konstruktor
     public CreatorVampire(String name) {
@@ -20,6 +20,7 @@ public class CreatorVampire extends Vampire {
     public void setDescendants(int descendants) {
         this.descendants = descendants;
     }
+
     
     //Operation
     //listAllDescendants
@@ -30,15 +31,13 @@ public class CreatorVampire extends Vampire {
     }
 
     //commandToDrinkBlood
-    public void commandToDrinkBlood(Vampire vampire, int amount) {
+    public void commandToDrinkBlood(Vampire vampire, int amount, Human human) {
 
-        if (vampire.attackHuman() == true)
+        if (vampire.attackHuman(human) == true) {
+            vampire.drinkBlood(amount);
+        }
 
-        vampire.drinkBlood(amount);
         System.out.println(vampire.getName() + " drunk " + amount + "L of the human blood!");
-
-        return (vampire.attackHuman(Human human))
-        // Verbindung mit Human to Vampire 
     }
 
     //commandToAttack
