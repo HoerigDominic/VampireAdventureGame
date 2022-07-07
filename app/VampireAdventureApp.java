@@ -1,9 +1,11 @@
 package app;
 
 import java.util.Scanner;
+import java.util.Random;
         
 import model.CreatorVampire;
 import model.Vampire;
+import model.Human;
 
 /**
  * @author vemaj
@@ -12,7 +14,7 @@ import model.Vampire;
 public class VampireAdventureApp {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static Vampire[] team = new Vampire [10];
+    private static Vampire[] team = new Vampire [3];
 
     /**
      * @param args mainklasse
@@ -104,19 +106,44 @@ public class VampireAdventureApp {
     //createVampire
     private static void createVampire() {
 
-        System.out.print("\nPlease enter a Name for your Creator Vampire: ");
-        CreatorVampire player = new CreatorVampire(scanner.next());
-        team[0] = player;
+        System.out.println("(1)\t Creator Vampire (2)\t Minions Vampire");
+        System.out.print("\nBEWARE! If you choose Creator Vampire, your whole Team will be reseted!\n");
+        System.out.print("\nPlease select a type of Vampire: ");
+        int choice = scanner.nextInt();
 
-        System.out.print("\nPlease enter a Name for your first Descandent: ");
-        Vampire vampire1 = new Vampire(scanner.next(), player);
-        team[1] =vampire1;
+        if (choice == 1) {
 
-        System.out.print("\nPlease enter a Name for your second Descandent: ");
-        Vampire vampire2 = new Vampire(scanner.next(), player);
-        team[2]= vampire2;
+            System.out.print("\nPlease enter a Name for your Creator Vampire: ");
+            CreatorVampire player = new CreatorVampire(scanner.next());
+            team[0] = player;
+
+            System.out.print("\nPlease enter a Name for your first Minion Vampire: ");
+            Vampire vampire1 = new Vampire(scanner.next(), player);
+            team[1] =vampire1;
+
+            System.out.print("\nPlease enter a Name for your second Minion Vampire: ");
+            Vampire vampire2 = new Vampire(scanner.next(), player);
+            team[2]= vampire2;
+            
 
         System.out.println("\nWell done "+player.getName()+"! \nTogether with your two descendents you can start a Nightly Adventure!\n");
+        
+        }
+        else if (choice == 2) {
+
+            System.out.print("\nPlease enter a Name for your Minion Vampire: ");
+            Vampire vampire3 = new Vampire(scanner.next());
+
+            for (int i = 0; i < team.length; i++) {
+                if (team[i] == null) {
+                    team[i] = vampire3;
+                }
+            } 
+        } 
+        else {
+
+            System.out.println("Invalid input. Please choose a correct number between 1 and 2");
+        }
 
     } 
 
@@ -157,11 +184,89 @@ public class VampireAdventureApp {
     //deleteVampire
     public static void deleteVampire() {
 
+        System.out.print("\n=====Your Vampire Team=====\n");
+        System.out.println("(1)\t"+ team[0].getName()+"\n(2)\t"+ team[1].getName()+"\n(3)\t"+ team[2].getName());
+        System.out.print("\nBEWARE! If you choose (1) your Main character will be deleted!\n");
+        System.out.print("\nYou have to create a new Creator Vampire and Team!\n");
+        System.out.print("\nPlease choose a number between 1 and 3 to delete the Vampire:\t");
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            team[0] = null;
+
+        }  
+        else if (choice == 2) {
+            team[1] = null;
+        } 
+        else if (choice == 3) {
+            team[2] = null;        
+        }
+
     }
 
     //startNighltyAdventure
     public static void startNighltyAdventure() {
 
+        Vampire[] gameVampireTeam = new Vampire[18];
+
+        for (int i = 0; i < team.length;i++) {
+
+            gameVampireTeam[i] = team[i];
+        }
+        
+        System.out.println("\nRise vampires, the sun has gone down and there is lots that needs to be done.\nTime is running: Round 1\n");
+
+        int maxRound = 0;
+
+        while(maxRound <= 15) {
+
+            int probability = new Random().nextInt(11);
+            
+            if (probability <=7) {
+
+               Human human = new Human();
+
+               System.out.println("\nGreat you meet a Human!");
+               System.out.println("\nWho should attack?: ");
+               System.out.println("(1)\t Creator Vampire (2)\t Minion Vampire");
+               System.out.println("\nPlease choose 1 or 2");
+
+               int choice = scanner.nextInt();
+
+               if (choice == 1) {
+
+                gameVampireTeam[0].attackHuman(human);
+
+                if (choice == 2) {
+
+                    for (int i = 1; i < gameVampireTeam.length; i++) {
+                        if(gameVampireTeam[i] != null) {
+                            System.out.println(gameVampireTeam[i].getName());        
+                    }
+
+                    System.out.println("Please enter the position number of your choosen Minion Vampire");
+                    
+                    int choice = scanner.next();
+
+                    for (int i = 1; i < gameVampireTeam.length; i++) {
+
+                        if (choice == gameVampireTeam;
+                    }
+
+                    
+                    
+
+
+                }
+                
+
+                
+               }
+
+               
+
+            }
+        }
     }
 
     //quit
