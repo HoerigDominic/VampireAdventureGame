@@ -4,15 +4,16 @@ import java.util.UUID;
 import java.util.Random;
 
 public class Human {
-    
-    //Attribute
+
     private String id;
     private int amountOfBlood;
     private String name;
     private boolean isOverwhelmd;
 
 
-    //Konstruktor
+    /**
+     * 
+     */
     public Human () {
 
         this.id = UUID.randomUUID().toString();
@@ -20,41 +21,52 @@ public class Human {
         
     }
 
-    //Getter & Setter
+    /**
+     * @return
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public double getAmountOfBlood() {
+    /**
+     * @return
+     */
+    public int getAmountOfBlood() {
         return amountOfBlood;
     }
 
-    public void setAmountOfBlood(int amountOfBlood) {
-        this.amountOfBlood = amountOfBlood;
-    }
-
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return
+     */
     public boolean isOverwhelmd() {
         return isOverwhelmd;
     }
 
+    /**
+     * @param isOverwhelmd
+     */
     public void setOverwhelmd(boolean isOverwhelmd) {
         this.isOverwhelmd = isOverwhelmd;
     }
 
-    //Operationen
-    //defend
+ 
+    /**
+     * @return
+     */
     public boolean defend() {
 
         int probability = new Random().nextInt(5);
@@ -71,7 +83,9 @@ public class Human {
         return defend;
     }
 
-    //flee
+    /**
+     * @return
+     */
     public boolean flee() {
 
         int probability = new Random().nextInt(11);
@@ -87,7 +101,10 @@ public class Human {
         return fleeValue;
     } 
 
-    //looseBlood
+    /**
+     * @param amount
+     * @param vampire
+     */
     public void bloodloss (int amount, Vampire vampire) {
 
         this.amountOfBlood = amountOfBlood - amount;
@@ -104,18 +121,22 @@ public class Human {
         
     }
 
-    //turnIntoVampire
+    /**
+     *  Methode noch unklar!
+     * @param vampire
+     */
     public void turnIntoVampire(Vampire vampire) {
 
-        
+        int randomzahl = new Random().nextInt(21);
 
+        Vampire humanVampire = new Vampire("HumanVampire");
         
-    
-            
-        }
     }
 
-    //Definiert Blutmenge zwischen 6-8Liter als Double 
+    /**
+     * @return
+     * Definiert Blutmenge zwischen 6-8Liter als integer 
+     */
     public int generateBlood() {
 
     Random randomNumber = new Random();
@@ -127,7 +148,5 @@ public class Human {
 
         return randomNumberValue;
     }
-
-
 
 }
