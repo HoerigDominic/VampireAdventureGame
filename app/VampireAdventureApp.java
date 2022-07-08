@@ -6,6 +6,7 @@ import java.util.Random;
 import model.CreatorVampire;
 import model.Vampire;
 import model.Human;
+import model.VampireHunter;
 
 /**
  * @author vemaj
@@ -22,6 +23,7 @@ public class VampireAdventureApp {
     public static void main(String[] args) {
         
         CreatorVampire standardCreator = new CreatorVampire("Graf Dolmeva");
+        standardCreator.setCreator(standardCreator);
         Vampire standardVampire1 = new Vampire("Serafim", standardCreator);
         Vampire standardVampire2 = new Vampire("Gondalf", standardCreator);
         
@@ -75,7 +77,7 @@ public class VampireAdventureApp {
                 deleteVampire();
                 break;
             case 5:
-                startNighltyAdventure();
+                startNightlyAdventure();
                 break;
             case 6:
                 quitGame(); 
@@ -116,6 +118,7 @@ public class VampireAdventureApp {
             System.out.print("\nPlease enter a Name for your Creator Vampire: ");
             CreatorVampire player = new CreatorVampire(scanner.next());
             team[0] = player;
+            player.setCreator(player);
 
             System.out.print("\nPlease enter a Name for your first Minion Vampire: ");
             Vampire vampire1 = new Vampire(scanner.next(), player);
@@ -204,8 +207,7 @@ public class VampireAdventureApp {
 
     }
 
-    //startNighltyAdventure
-    public static void startNighltyAdventure() {
+    public static void startNightlyAdventure() {
 
         Vampire[] gameVampireTeam = new Vampire[18];
 
@@ -246,27 +248,21 @@ public class VampireAdventureApp {
 
                     System.out.println("Please enter the position number of your choosen Minion Vampire");
                     
-                    int choice = scanner.next();
-
-                    for (int i = 1; i < gameVampireTeam.length; i++) {
-
-                        if (choice == gameVampireTeam;
-                    }
-
-                    
-                    
-
-
                 }
-                
+            }
+            if (probability == 8) { 
 
-                
-               }
+                System.out.println("\nNothing happens.... you keep searching for food!\n");
 
-               
+            } 
+            if (probability  == 9 || probability == 10) {
+
+                System.out.println("\nOhhh nooo a Vampirehunter crossed your way !!!\n");
+
 
             }
         }
+            
     }
 
     //quit
