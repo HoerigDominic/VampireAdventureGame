@@ -5,14 +5,15 @@ import java.util.Random;
 
 public class VampireHunter {
 
-    //Attribute
     private String id = UUID.randomUUID().toString();
     private String name;
     private int experiencePoints = 0;
     private int energy = 1000;
     private boolean alive;
 
-    //Konstruktor
+    /**
+     * @param name
+     */
     public VampireHunter (String name) {
 
         this.name = name;
@@ -23,72 +24,88 @@ public class VampireHunter {
 
     }
 
-    // Getter & Setter
+    /**
+     * @return
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return
+     */
     public int getExperiencePoints() {
         return experiencePoints;
     }
 
-    public void setExperiencePoints(int experiencePoints) {
-        this.experiencePoints = experiencePoints;
-    }
-
+    /**
+     * @return
+     */
     public int getEnergy() {
         return energy;
     }
 
+    /**
+     * @param energy
+     */
     public void setEnergy(int energy) {
         this.energy = energy;
     }
 
+    /**
+     * @return
+     */
     public boolean isAlive() {
         return alive;
     }
 
+    /**
+     * @param alive
+     */
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
     
-
-    //Operationen
-    //attack
-    public int attack(Vampire vampire) {
+    /**
+     * @param vampire
+     */
+    public void attack(Vampire vampire) {
 
         int probability = new Random().nextInt(11);
         
         if (probability <= 5) {
             
-            int newEnergyVampire = vampire.getEnergy() -3;
+            vampire.setEnergy(vampire.getEnergy()-3);
 
-            if (newEnergyVampire <= 0) {
+            if (vampire.getEnergy() <= 0) {
 
                 vampire.setFinallyDead(true);
                 this.experiencePoints++;
                 
-            } return newEnergyVampire;
+            } 
         } 
-
-        return vampire.getEnergy();
     
     }
 
-    //takeDamage
-    public int takeDamage(int amount) {
+    /**
+     * @param amount
+     * @return
+     */
+    public void takeDamage(int amount) {
 
         this.energy = this.energy - amount;
 
@@ -98,11 +115,11 @@ public class VampireHunter {
             System.out.println(this.name +" is dead !");
 
         }
-
-        return this.energy;
     }
 
-    //alive
+    /**
+     * @return
+     */
     public boolean alive() {
 
         if (this.energy <= 0) {

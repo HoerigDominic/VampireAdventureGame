@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class CreatorVampire extends Vampire {
 
-    private Vampire descendants;
+    private Vampire[] descendants;
     private int atk;
 
     /**
@@ -15,22 +15,19 @@ public class CreatorVampire extends Vampire {
         this.atk = 300;
     }
 
-    
     /**
      * @return
      */
-    public Vampire getDescendants() {
+    public Vampire[] getDescendants() {
         return descendants;
     }
-
 
     /**
      * @param descendants
      */
-    public void setDescendants(Vampire descendants) {
+    public void setDescendants(Vampire[] descendants) {
         this.descendants = descendants;
     }
-
 
     /**
      * @return
@@ -40,13 +37,21 @@ public class CreatorVampire extends Vampire {
     } 
     
    
-     /**
-     * Methode unklar!
+    
+    /**
+     * 
      */
     public void listAllDescendants() {
 
-        System.out.println("" + this.getDescendants());
-    
+        for (int i = 0; i < descendants.length; i++) {
+
+            if(descendants[i] != null) {
+                System.out.println("\n=====Your descendants=====\n");
+                System.out.println("\nName: "+descendants[i].getName()+"\tEnergy: "+descendants[i].getEnergy()+"\tHunger: "+descendants[i].getHunger()+"\tDead: "+descendants[i].isFinallyDead()+"\n");
+
+            }
+        }
+
     }
 
     
@@ -69,7 +74,7 @@ public class CreatorVampire extends Vampire {
     public void commandToDrinkBlood(int amount, Human human, Vampire vampire) {
 
             if(human.isOverwhelmd() == true) {
-                vampire.drinkBlood(amount,human,vampire);
+                vampire.drinkBlood(amount,human);
                 System.out.println(vampire.getName() + " drunk " + amount + "L of the human blood!");
         }
 
@@ -80,19 +85,37 @@ public class CreatorVampire extends Vampire {
     /**
      * @param vampireHunter
      */
-    public void attackVampireHunter(VampireHunter vampireHunter) {
+    public void attackVampireHunter(VampireHunter vampirehunter) {
 
-        vampireHunter.takeDamage(this.atk);
-     
+        int probability = new Random().nextInt(11);
+        
+        if (probability <= 5) {
+            
+            vampirehunter.setEnergy(vampirehunter.getEnergy()-this.atk);
+
+            if (vampirehunter.getEnergy() <= 0) {
+
+                vampirehunter.setAlive(false);
+                
+            } 
+        } 
+    
     }
 
-    /**
-     * Methode unklar!
+    /** 
+     * 
      * @param vampire
      */
     public void sacrifice(Vampire vampire) {
-        
+
+        for (int i = 0; i < descendants.length; i++) {
+
+            if (descendants[i] == vampire) {
+                descendants[i] = null;
+            }
+        } 
     }
+
 
     /**
      * 

@@ -70,17 +70,16 @@ public class Human {
     public boolean defend() {
 
         int probability = new Random().nextInt(5);
-        boolean defend = false;
 
         if (probability <= 1) {
             
-            defend = true;
             System.out.println("The human defended himself from your attack!");
+            return true;
 
         } else {
             System.out.println("The human missed to defend himself from your attack!");
+            return false;
         } 
-        return defend;
     }
 
     /**
@@ -89,47 +88,34 @@ public class Human {
     public boolean flee() {
 
         int probability = new Random().nextInt(11);
-        boolean fleeValue = false;
 
         if (probability <= 2) {
-            System.out.println("The human fled!");
-            fleeValue = true;
+
+            return true;
 
         } else {
-            System.out.println("The human missed to flee!");
+            
+            return false;
         } 
-        return fleeValue;
+        
     } 
 
     /**
      * @param amount
      * @param vampire
      */
-    public void bloodloss (int amount, Vampire vampire) {
+    public void turnIntoVampire (int amount) {
 
         this.amountOfBlood = amountOfBlood - amount;
 
         if (this.amountOfBlood < 5) {
 
-            turnIntoVampire(vampire);
             System.out.println("A new Vampire has been born!");
 
         } else {
 
             System.out.println("You have drinken enough and let the human go his way....");
         } 
-        
-    }
-
-    /**
-     *  Methode noch unklar!
-     * @param vampire
-     */
-    public void turnIntoVampire(Vampire vampire) {
-
-        int randomzahl = new Random().nextInt(21);
-
-        Vampire humanVampire = new Vampire("HumanVampire");
         
     }
 

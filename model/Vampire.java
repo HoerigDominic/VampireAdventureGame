@@ -163,13 +163,20 @@ public class Vampire {
     public void attackHuman(Human human) {
 
         int overwhelmHumanValue = new Random().nextInt(11); 
+        boolean test;
 
-        if (overwhelmHumanValue <= 6 && human.defend() == true) {
-            System.out.println("The Vampire" + this.name + " overwhelmed the Human! Now he could drink blood!");
-            human.setOverwhelmd(true);
+        if (overwhelmHumanValue <= 6) {
+            test =human.defend();
+            
+            if (test == false) {
+
+            System.out.println("The Vampire " + this.name + " overwhelmed the Human! Now he could drink blood!");
+            human.setOverwhelmd(true); 
 
         } else {
-            System.out.println("The Vampire" + this.name + " failed to overhelm the Human! ");
+            System.out.println("The Vampire " + this.name + " failed to overhelm the Human! ");
+
+        }
 
         }
 
@@ -178,10 +185,10 @@ public class Vampire {
      /**
      * @param amount
      */
-    public void drinkBlood(int amount, Human human, Vampire vampire) {
+    public void drinkBlood(int amount, Human human) {
 
-        human.bloodloss(amount, vampire);
         this.hunger = this.hunger - amount;
+        human.turnIntoVampire(amount);
 
 
         if (this.hunger <= 0) {
