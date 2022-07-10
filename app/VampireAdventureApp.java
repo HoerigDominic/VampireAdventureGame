@@ -15,7 +15,9 @@ import model.VampireHunter;
 public class VampireAdventureApp {
 
     private static Scanner scanner = new Scanner(System.in);
+    private static CreatorVampire[] creator = new CreatorVampire[1];
     private static Vampire[] team = new Vampire [3];
+    private static Vampire[] descendants2 = new Vampire[10];
 
     /**
      * @param args mainklasse
@@ -24,12 +26,19 @@ public class VampireAdventureApp {
         
         CreatorVampire standardCreator = new CreatorVampire("Graf Dolmeva");
         standardCreator.setCreator(standardCreator);
-        Vampire standardVampire1 = new Vampire("Serafim", standardCreator);
-        Vampire standardVampire2 = new Vampire("Gondalf", standardCreator);
-        
+        creator[0] = standardCreator;
         team[0] = standardCreator; 
+    
+
+        Vampire standardVampire1 = new Vampire("Serafim", standardCreator);
         team[1] = standardVampire1;
+        descendants2[0] = standardVampire1;
+        
+        Vampire standardVampire2 = new Vampire("Gondalf", standardCreator);
         team[2] = standardVampire2;
+        descendants2[1] = standardVampire2;
+
+        standardCreator.setDescendants(descendants2);
 
         while (true) {
             showMenu();
@@ -105,7 +114,40 @@ public class VampireAdventureApp {
 
     }
 
-    //createVampire
+    /**
+     * 
+     */
+    private static void showMenuFightHuman() {
+
+        String[] menuItems = { "", "(1)\tCommand Vampire to attack", "(2)\tDrinkblood by yourself", "(3)\tCommand Vampire to drink blood", "(4)\tList All Vampires"};
+        
+        System.out.println("\n-----Menu Fight against Human-----\n");
+        for (int i = 1; i < menuItems.length; i++) {
+            System.out.println(menuItems[i]);
+        }
+
+
+    }
+
+    /**
+     * 
+     */
+    private static void showMenuFightVampireHunter() {
+
+        String[] menuItems = { "", "(1)\tAttack", "(2)\tSacrifice a Vampire", "(3)\tFlee", "(4)\tList all Vampires"};
+        
+        System.out.println("\n-----Menu Fight against Vampirehunter-----\n");
+        for (int i = 1; i < menuItems.length; i++) {
+            System.out.println(menuItems[i]);
+        }
+
+
+    }
+
+
+    /**
+     * 
+     */
     private static void createVampire() {
 
         System.out.println("(1)\t Creator Vampire (2)\t Minions Vampire");
@@ -118,30 +160,37 @@ public class VampireAdventureApp {
             System.out.print("\nPlease enter a Name for your Creator Vampire: ");
             CreatorVampire player = new CreatorVampire(scanner.next());
             team[0] = player;
+            creator[0] = player;
             player.setCreator(player);
 
             System.out.print("\nPlease enter a Name for your first Minion Vampire: ");
             Vampire vampire1 = new Vampire(scanner.next(), player);
             team[1] =vampire1;
+            descendants2[0] = vampire1;
+
 
             System.out.print("\nPlease enter a Name for your second Minion Vampire: ");
             Vampire vampire2 = new Vampire(scanner.next(), player);
             team[2]= vampire2;
-            
+            descendants2[1] = vampire2;
 
         System.out.println("\nWell done "+player.getName()+"! \nTogether with your two descendents you can start a Nightly Adventure!\n");
         
-        }
-        else if (choice == 2) {
+        }  
+        
+        if (choice == 2) {
 
             System.out.print("\nPlease enter a Name for your Minion Vampire: ");
             Vampire vampire3 = new Vampire(scanner.next());
 
             for (int i = 0; i < team.length; i++) {
+
                 if (team[i] == null) {
                     team[i] = vampire3;
+                    descendants2[i-1] = vampire3;
                 }
-            } 
+            }
+
         } 
         else {
 
@@ -150,11 +199,14 @@ public class VampireAdventureApp {
 
     } 
 
-    //showSelectedVampire
+
+    /**
+     * 
+     */
     private static void showSelectedVampire() {
         
         System.out.print("\n=====Your Vampire Team====\n");
-        System.out.println("(1)\t"+ team[0].getName()+"\n(2)\t"+ team[1].getName()+"\n(3)\t"+ team[2].getName());
+        System.out.println("(1)\t"+ team[0].getName()+"\n(2)\t"+ team[1].getName());
         System.out.print("\nPlease choose a number between 1 and 3:\t");
         int choice = scanner.nextInt();
 
@@ -173,7 +225,10 @@ public class VampireAdventureApp {
 
     }  
 
-    //listAllVampires
+    
+    /**
+     * 
+     */
     public static void listAllVampires() {
 
         for (int i =0; i < team.length; i++) {
@@ -184,7 +239,10 @@ public class VampireAdventureApp {
         }
     }
 
-    //deleteVampire
+    
+    /**
+     * 
+     */
     public static void deleteVampire() {
 
         System.out.print("\n=====Your Vampire Team=====\n");
@@ -200,9 +258,11 @@ public class VampireAdventureApp {
         }  
         else if (choice == 2) {
             team[1] = null;
+            descendants2[0] = null;
         } 
         else if (choice == 3) {
-            team[2] = null;        
+            team[2] = null; 
+            descendants2[1] = null;       
         }
 
     }
@@ -215,57 +275,58 @@ public class VampireAdventureApp {
 
             gameVampireTeam[i] = team[i];
         }
-        
-        System.out.println("\nRise vampires, the sun has gone down and there is lots that needs to be done.\nTime is running: Round 1\n");
+        System.out.print("\n==========================\n");
+        System.out.print("\nRise vampires, the sun has gone down and there is lots that needs to be done.\nTime is running: Round 1\n");
 
-        int maxRound = 0;
+        int maxRound = 1;
 
         while(maxRound <= 15) {
 
             int probability = new Random().nextInt(11);
             
             if (probability <=7) {
+                Human human = new Human();
+        
+               if (human.flee()== true) {
+                System.out.println("\nGreat you meet a Human!");
+                System.out.println("The human fled!");
+                maxRound++;
+                System.out.println("\nRound: "+maxRound);
 
-               Human human = new Human();
+            } else {
 
-               System.out.println("\nGreat you meet a Human!");
-               System.out.println("\nWho should attack?: ");
-               System.out.println("(1)\t Creator Vampire (2)\t Minion Vampire");
-               System.out.println("\nPlease choose 1 or 2");
-
-               int choice = scanner.nextInt();
-
-               if (choice == 1) {
-
-                gameVampireTeam[0].attackHuman(human);
-
-                if (choice == 2) {
-
-                    for (int i = 1; i < gameVampireTeam.length; i++) {
-                        if(gameVampireTeam[i] != null) {
-                            System.out.println(gameVampireTeam[i].getName());        
-                    }
-
-                    System.out.println("Please enter the position number of your choosen Minion Vampire");
+                System.out.println("\nThe human missed to flee!");
+                showMenuFightHuman();
+                System.out.print("\nPlease choose a number between 1 and 4:\t");
+                int choice = scanner.nextInt();
+                 
+                if (choice == 1) {
                     
-                }
-            }
-            if (probability == 8) { 
+                    System.out.println("\nWhich Vampire should attack ?");
+                    System.out.println("(1)\t"+ gameVampireTeam[1].getName()+"\n(2)\t"+ gameVampireTeam[2].getName());
+                    System.out.print("\nPlease select Position number of the minion which should attack: ");
+                    int choice1 = scanner.nextInt();
 
-                System.out.println("\nNothing happens.... you keep searching for food!\n");
+                    for (int z = 1; z < gameVampireTeam.length; z++) {
 
-            } 
-            if (probability  == 9 || probability == 10) {
+                        if (choice1 == z) {
+                            gameVampireTeam[z].attackHuman(human);
+                        }
+                    }
+                    showMenuFightHuman();
 
-                System.out.println("\nOhhh nooo a Vampirehunter crossed your way !!!\n");
-
-
+                } 
+                  }
             }
         }
-            
     }
+            
+    
 
-    //quit
+
+    /**
+     * 
+     */
     private static void quitGame() {
         System.out.println("\nThe Game has been closed!\n");
         System.out.println("\n=========================\n");
