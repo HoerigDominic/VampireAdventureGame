@@ -3,6 +3,13 @@ package model;
 import java.util.UUID;
 import java.util.Random;
 
+/**
+ * Class Human
+ *
+ * @author Dominic Hörig
+ * @author Sébastien Foly
+ */
+
 public class Human {
 
     private String id;
@@ -12,7 +19,7 @@ public class Human {
 
 
     /**
-     * 
+     * konstrukor for human
      */
     public Human () {
 
@@ -21,26 +28,30 @@ public class Human {
         
     }
 
+    
     /**
-     * @return
+     * @return String (id of human)
      */
     public String getId() {
         return id;
     }
 
+
     /**
-     * @return
+     * @return Integer (amount of blood from human)
      */
     public int getAmountOfBlood() {
         return amountOfBlood;
     }
 
+
     /**
-     * @return
+     * @return String (name of human)
      */
     public String getName() {
         return name;
     }
+
 
     /**
      * @param name
@@ -49,12 +60,14 @@ public class Human {
         this.name = name;
     }
 
+
     /**
-     * @return
+     * @return boolean (if human is overwhelmed after vampire attack)
      */
     public boolean isOverwhelmd() {
         return isOverwhelmd;
     }
+
 
     /**
      * @param isOverwhelmd
@@ -65,7 +78,9 @@ public class Human {
 
  
     /**
-     * @return
+     * 25% chance to defend vampire attack
+     * 
+     * @return booelan (if human defend himself from vampire attack)
      */
     public boolean defend() {
 
@@ -82,8 +97,11 @@ public class Human {
         } 
     }
 
+
     /**
-     * @return
+     * 20% chance to flee from fight witch vampire
+     * 
+     * @return boolean (if human flee or not)
      */
     public boolean flee() {
 
@@ -100,9 +118,12 @@ public class Human {
         
     } 
 
+
     /**
+     * human turn to vampire when amount of blood < 5
+     * 
      * @param amount
-     * @param vampire
+     *
      */
     public void turnIntoVampire (int amount) {
 
@@ -119,9 +140,11 @@ public class Human {
         
     }
 
+
     /**
-     * @return
-     * Definiert Blutmenge zwischen 6-8Liter als integer 
+     * defines random blood amount between 6-8 for a human
+     * 
+     * @return Integer (amount of blood from human)
      */
     public int generateBlood() {
 
@@ -134,5 +157,6 @@ public class Human {
 
         return randomNumberValue;
     }
+
 
 }

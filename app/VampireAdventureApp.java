@@ -9,14 +9,22 @@ import model.Human;
 import model.VampireHunter;
 
 /**
- * @author vemaj
- *
+ * Main game 
+ * 
+ * @author Dominic Hörig
+ * @author Sébastien Foly
  */
+
+
 public class VampireAdventureApp {
 
+    //scanner to read input 
     private static Scanner scanner = new Scanner(System.in);
+    //array for creatorvampire
     private static CreatorVampire[] creator = new CreatorVampire[1];
+    //array for vampireteam during adventure 
     private static Vampire[] team = new Vampire [3];
+    //array for descendants of creatorvampire 
     private static Vampire[] descendants2 = new Vampire[10];
 
     /**
@@ -24,22 +32,25 @@ public class VampireAdventureApp {
      */
     public static void main(String[] args) {
         
+        //create creator vampire when start game
         CreatorVampire standardCreator = new CreatorVampire("Graf Dolmeva");
         standardCreator.setCreator(standardCreator);
         creator[0] = standardCreator;
         team[0] = standardCreator; 
     
-
+        //create first minion vampire when start game
         Vampire standardVampire1 = new Vampire("Serafim", standardCreator);
         team[1] = standardVampire1;
         descendants2[0] = standardVampire1;
         
+        //create second minion vampire when start game
         Vampire standardVampire2 = new Vampire("Gondalf", standardCreator);
         team[2] = standardVampire2;
         descendants2[1] = standardVampire2;
 
         standardCreator.setDescendants(descendants2);
 
+    
         while (true) {
             showMenu();
             int choice = readUserInput();
@@ -50,7 +61,7 @@ public class VampireAdventureApp {
     }      
 
     /**
-     * 
+     * @author vemaj
      * @return
      */
     private static int readUserInput() {
@@ -68,6 +79,7 @@ public class VampireAdventureApp {
     }
 
     /**
+     * handle the the coice from readUserInput
      * 
      * @param choice
      */
@@ -86,7 +98,7 @@ public class VampireAdventureApp {
                 deleteVampire();
                 break;
             case 5:
-                startNightlyAdventure();
+                //startNightlyAdventure();
                 break;
             case 6:
                 quitGame(); 
@@ -101,7 +113,7 @@ public class VampireAdventureApp {
     }
 
     /**
-     * 
+     * show the main menu when start game 
      */
     private static void showMenu() {
 
@@ -114,9 +126,7 @@ public class VampireAdventureApp {
 
     }
 
-    /**
-     * 
-     */
+    /* Not used
     private static void showMenuFightHuman() {
 
         String[] menuItems = { "", "(1)\tCommand Vampire to attack", "(2)\tDrinkblood by yourself", "(3)\tCommand Vampire to drink blood", "(4)\tList All Vampires"};
@@ -128,10 +138,9 @@ public class VampireAdventureApp {
 
 
     }
+    */
 
-    /**
-     * 
-     */
+    /* Not used!
     private static void showMenuFightVampireHunter() {
 
         String[] menuItems = { "", "(1)\tAttack", "(2)\tSacrifice a Vampire", "(3)\tFlee", "(4)\tList all Vampires"};
@@ -143,10 +152,12 @@ public class VampireAdventureApp {
 
 
     }
-
+    */
 
     /**
-     * 
+     * show list types of vampire
+     * choose type of vampire 
+     * enter name for vampire
      */
     private static void createVampire() {
 
@@ -201,7 +212,9 @@ public class VampireAdventureApp {
 
 
     /**
-     * 
+     * show list of team 
+     * select vampire 
+     * show stats
      */
     private static void showSelectedVampire() {
         
@@ -227,7 +240,7 @@ public class VampireAdventureApp {
 
     
     /**
-     * 
+     * show list of team and stats
      */
     public static void listAllVampires() {
 
@@ -241,7 +254,8 @@ public class VampireAdventureApp {
 
     
     /**
-     * 
+     * show list of team
+     * select vampire to delete 
      */
     public static void deleteVampire() {
 
@@ -266,6 +280,8 @@ public class VampireAdventureApp {
         }
 
     }
+
+    /*  Try to code the Nightly Adventure but failed !!
 
     public static void startNightlyAdventure() {
 
@@ -320,12 +336,10 @@ public class VampireAdventureApp {
             }
         }
     }
-            
+    */     
     
-
-
     /**
-     * 
+     * quit the game 
      */
     private static void quitGame() {
         System.out.println("\nThe Game has been closed!\n");

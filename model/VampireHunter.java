@@ -3,6 +3,13 @@ package model;
 import java.util.UUID;
 import java.util.Random;
 
+/**
+ * Class Vampirehunter
+ *
+ * @author Dominic Hörig
+ * @author Sébastien Foly
+ */
+
 public class VampireHunter {
 
     private String id = UUID.randomUUID().toString();
@@ -12,6 +19,7 @@ public class VampireHunter {
     private boolean alive;
 
     /**
+     * konstruktor for vampirehunter
      * @param name
      */
     public VampireHunter (String name) {
@@ -24,15 +32,17 @@ public class VampireHunter {
 
     }
 
+
     /**
-     * @return
+     * @return String (id of vampirehunter)
      */
     public String getId() {
         return id;
     }
 
+
     /**
-     * @return
+     * @return String (name of vampirehunter)
      */
     public String getName() {
         return name;
@@ -46,14 +56,14 @@ public class VampireHunter {
     }
 
     /**
-     * @return
+     * @return Integer (espereince points of vampirehunter)
      */
     public int getExperiencePoints() {
         return experiencePoints;
     }
 
     /**
-     * @return
+     * @return Integer (ernergy of vampirehunter)
      */
     public int getEnergy() {
         return energy;
@@ -67,7 +77,7 @@ public class VampireHunter {
     }
 
     /**
-     * @return
+     * @return boolean (if vampirehunter is alive or not)
      */
     public boolean isAlive() {
         return alive;
@@ -81,6 +91,9 @@ public class VampireHunter {
     }
     
     /**
+     * 50% chance vampirehunter attack vampire succesfully
+     * vampirehunter attack vampire
+     * 
      * @param vampire
      */
     public void attack(Vampire vampire) {
@@ -102,8 +115,9 @@ public class VampireHunter {
     }
 
     /**
+     * vampirehunter take amount of damage from vampire
+     * 
      * @param amount
-     * @return
      */
     public void takeDamage(int amount) {
 
@@ -117,18 +131,4 @@ public class VampireHunter {
         }
     }
 
-    /**
-     * @return
-     */
-    public boolean alive() {
-
-        if (this.energy <= 0) {
-
-            this.alive = false;
-        
-        }
-        
-        return this.alive;
-    }
-    
 }

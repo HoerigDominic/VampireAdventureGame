@@ -2,12 +2,22 @@ package model;
 
 import java.util.Random;
 
+/**
+ * Class Creatorvampire
+ *
+ * @author Dominic Hörig
+ * @author Sébastien Foly
+ */
+
+
 public class CreatorVampire extends Vampire {
 
     private Vampire[] descendants;
     private int atk;
 
     /**
+     * use superkontruktor from vampire class 
+     * 
      * @param name
      */
     public CreatorVampire(String name) {
@@ -16,7 +26,7 @@ public class CreatorVampire extends Vampire {
     }
 
     /**
-     * @return
+     * @return array (descendants of creatorvampire)
      */
     public Vampire[] getDescendants() {
         return descendants;
@@ -30,7 +40,7 @@ public class CreatorVampire extends Vampire {
     }
 
     /**
-     * @return
+     * @return Integer (atk of the creatorvampire)
      */
     public int getAtk() {
         return atk;
@@ -39,7 +49,7 @@ public class CreatorVampire extends Vampire {
    
     
     /**
-     * 
+     * list all descendants of a vampire and their stats
      */
     public void listAllDescendants() {
 
@@ -56,6 +66,8 @@ public class CreatorVampire extends Vampire {
 
     
     /**
+     * command a minion vampire to attack human
+     * 
      * @param vampire
      * @param human
      */
@@ -67,6 +79,8 @@ public class CreatorVampire extends Vampire {
 
     
     /**
+     * command a minion vampire to drink blood 
+     * 
      * @param vampire
      * @param amount
      * @param human
@@ -83,6 +97,8 @@ public class CreatorVampire extends Vampire {
     
 
     /**
+     * creator vampire attack vampirehunter
+     * 
      * @param vampireHunter
      */
     public void attackVampireHunter(VampireHunter vampirehunter) {
@@ -103,6 +119,7 @@ public class CreatorVampire extends Vampire {
     }
 
     /** 
+     * scrifice a vampire during fight with vampirehunter
      * 
      * @param vampire
      */
@@ -117,22 +134,23 @@ public class CreatorVampire extends Vampire {
     }
 
 
+    
     /**
-     * 
+     * @return boolean (if creator vampire fled from vampirehunter or not)
      */
     public boolean flee() {
 
         int probability = new Random().nextInt(11);
-        boolean fleeValue = false;
 
         if (probability <= 4) {
             System.out.println("You fled successfully from the Vampirehunter!");
-            fleeValue = true;
+            return true;
 
         } else {
             System.out.println("You missed to fled from the Vampirehunter!");
+            return false;
         } 
-        return fleeValue;
+
     } 
 
 }

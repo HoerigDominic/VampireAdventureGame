@@ -3,6 +3,13 @@ package model;
 import java.util.UUID;
 import java.util.Random;
 
+/**
+ * Class Vampire
+ *
+ * @author Dominic Hörig
+ * @author Sébastien Foly
+ */
+
 public class Vampire {
 
     private String id;
@@ -17,6 +24,7 @@ public class Vampire {
     private boolean finallyDead;
     
     /**
+     * Konstruktor for Minion Vampire
      * @param name
      * @param creator
      */
@@ -32,10 +40,11 @@ public class Vampire {
     }
 
     /**
+     * Konstruktor for Creator Vampire and Human-Vampire 
      * @param name
      */
     public Vampire(String name) {
-
+    
         this.name = name;
         this.id = UUID.randomUUID().toString();
         this.grandness = 0;
@@ -44,40 +53,46 @@ public class Vampire {
         this.finallyDead = false;
     }
 
+        
     /**
-     * @return
+     * @return String (id of Vampire) 
      */
     public String getId() {
         return id;
     }
 
+
     /**
-     * @return
+     * @return String (name of Vampire)
      */
     public String getName() {
         return name;
     }
 
+    
     /**
-     * @return
+     * @return Integer (grandness of Vampire)
      */
     public int getGrandness() {
         return grandness;
     }
 
+
     /**
-     * @return 
+     * @return double (hunger of Vampire)
      */
     public double getHunger() {
         return hunger;
     }
 
+
     /**
-     * @return
+     * @return creator (creator of Vampire)
      */
     public CreatorVampire getCreator() {
         return creator;
     }
+
 
     /**
      * @param creator
@@ -86,36 +101,39 @@ public class Vampire {
         this.creator = creator;
     }
 
+
     /**
-     * @return
+     * @return boolean (if Vampire drink blood or not)
      */
     public boolean isDrinkingBlood() {
         return isDrinkingBlood;
     }
 
+    
     /**
-     * @param isDrinkingBlood
+     * @param isDrinkingBlood 
      */
     public void setDrinkingBlood(boolean isDrinkingBlood) {
         this.isDrinkingBlood = isDrinkingBlood;
     }
 
+
     /**
-     * @return
+     * @return boolean (if Vampire is in Fight or not)
      */
     public boolean isInFight() {
         return inFight;
     }
 
     /**
-     * @param inFight
+     * @param inFight 
      */
     public void setInFight(boolean inFight) {
         this.inFight = inFight;
     }
 
     /**
-     * @return
+     * @return boolean (if Vampire can controll instincts or not)
      */
     public boolean isCanControllInstincts() {
         return canControllInstincts;
@@ -128,12 +146,14 @@ public class Vampire {
         this.canControllInstincts = canControllInstincts;
     }
 
+
     /**
-     * @return
+     * @return integer (Energy of Vampire)
      */
     public int getEnergy() {
         return energy;
     }
+
 
     /**
      * @param energy
@@ -142,98 +162,112 @@ public class Vampire {
         this.energy = energy;
     }
 
+
     /**
-     * @return
+     * @return boolean (if Vampire is dead or not)
      */
     public boolean isFinallyDead() {
         return finallyDead;
     }
+
 
     /**
      * @param finallyDead
      */
     public void setFinallyDead(boolean finallyDead) {
         this.finallyDead = finallyDead;
+    
     }
 
-    
+
     /**
+     * vampire attacks human
+     * 60% vampire overwhelme human
+     * 25% human defend the attack 
+     * 
      * @param human
      */
     public void attackHuman(Human human) {
-
+    
         int overwhelmHumanValue = new Random().nextInt(11); 
-        boolean test;
-
+        boolean result;
+    
         if (overwhelmHumanValue <= 6) {
-            test =human.defend();
+            result =human.defend();
             
-            if (test == false) {
-
+            if (result == false) {
+    
             System.out.println("The Vampire " + this.name + " overwhelmed the Human! Now he could drink blood!");
             human.setOverwhelmd(true); 
-
-        } else {
-            System.out.println("The Vampire " + this.name + " failed to overhelm the Human! ");
-
+    
+            } else {
+                
+                System.out.println("The Vampire " + this.name + " failed to overhelm the Human! ");
+            
+            }
+    
         }
-
-        }
-
+    
     }
 
      /**
+     * when attackHuman is true 
+     * vampire drink amount of blood from the human 
+     * 
      * @param amount
+     * @param human
      */
     public void drinkBlood(int amount, Human human) {
-
+    
         this.hunger = this.hunger - amount;
         human.turnIntoVampire(amount);
-
-
+    
+    
         if (this.hunger <= 0) {
             System.out.println("The Vampire " + this.name + " satisfied his hunger!");     
         
         } else {
             System.out.println("The Vampire " + this.name + " needs more blood to satisfy his hunger!"); 
-
+    
         } 
         
     }
 
     
     /**
+     * vampire take damage from vampirehunter attack
+     * 
      * @param damage
      */
     public void takeDamage(int damage) {
-
+    
         this.energy = this.energy - damage;
-
+    
         if (this.energy <= 0) {
-
+    
             System.out.println(this.name +" is dead !");
             this.finallyDead = true;
         } 
-
+    
     }
     
     
     /**
-     * 
+     * print attributes of a vampire
      */
     public void print() {
-
+    
         System.out.println("\nName: "+this.name+
                         "\nGrandness: "+this.grandness+
                         "\nBloodhunger: "+this.hunger+
                         "\nEnergy: "+this.energy+
                         "\nCreator: "+this.creator.getName());
-
-
+    
+    
     }
 
 
-}
+}   
 
 
 
